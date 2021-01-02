@@ -4,7 +4,6 @@ require 'fileutils'
 require 'pp'
 require 'set'
 
-
 class GoogleTakeoutSorter
   def initialize
     @default_path = "Takeout/Google\ Photos"
@@ -45,9 +44,10 @@ class GoogleTakeoutSorter
           source_path = "#{Dir.pwd}/#{@input_folder}/#{photo_dir}/#{json['title']}"
 
           date = DateTime.parse(json['photoTakenTime']['formatted'])
-          month = date.strftime("%m").downcase
-          year = date.strftime("%Y").downcase
-          target_dir = "#{Dir.pwd}/#{@output_folder}/#{year}/#{month}"
+          month = date.strftime("%m")
+          year = date.strftime("%Y")
+          day = date.strftime("%d")
+          target_dir = "#{Dir.pwd}/#{@output_folder}/#{year}/#{year}-#{month}-#{day}"
           target_path = "#{target_dir}/#{json['title']}"
           FileUtils.mkdir_p(target_dir)
           if File.exist?(source_path)
