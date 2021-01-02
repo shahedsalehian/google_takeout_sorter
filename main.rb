@@ -47,8 +47,8 @@ class GoogleTakeoutSorter
           date = DateTime.parse(json['photoTakenTime']['formatted'])
           month = date.strftime("%m").downcase
           year = date.strftime("%Y").downcase
-          target_path = "#{Dir.pwd}/#{@output_folder}/#{year}/#{month}/#{json['title']}"
           target_dir = "#{Dir.pwd}/#{@output_folder}/#{year}/#{month}"
+          target_path = "#{target_dir}/#{json['title']}"
           FileUtils.mkdir_p(target_dir)
           if File.exist?(source_path)
             begin
