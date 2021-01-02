@@ -1,7 +1,6 @@
 require 'json'
 require 'date'
 require 'fileutils'
-require 'pp'
 require 'set'
 
 class GoogleTakeoutSorter
