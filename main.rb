@@ -96,7 +96,8 @@ class GoogleTakeoutSorter
     Dir.each_child(@input_folder) do |photo_dir|
       next if /.json/.match(photo_dir)
       Dir.each_child("#{@input_folder}/#{photo_dir}") do |file|
-        FileUtils.mv("#{@input_folder}/#{photo_dir}/#{file}", "#{@output_folder}/unsorted/#{file}", verbose: true) unless /.json/.match(file)
+        FileUtils.mv("#{@input_folder}/#{photo_dir}/#{file}",
+           "#{@output_folder}/unsorted/#{file}", verbose: true) unless /.json/.match(file)
       end
     end
 
@@ -106,7 +107,8 @@ class GoogleTakeoutSorter
   def setup
     if File.exist?(@default_path)
       @input_folder = @default_path
-      print "Default extraction folder ./Takeout/Google Photos/ found. Using it as input folder.\n"
+      print "Default extraction folder ./Takeout/Google Photos/ found. " \
+       "Using it as input folder.\n"
     else
       print "Relative path to EXTRACTED google takeout folder: "
       @input_folder = gets.chomp
